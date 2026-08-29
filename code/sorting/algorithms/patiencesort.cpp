@@ -9,7 +9,7 @@ std::vector<int> sortArray(std::vector<int>& arr){
     std::vector<std::stack<int>> pilas;
     for (int current : arr) {
         int izquierda = 0;
-        int derecha = pilas.size();
+        int derecha = (int)pilas.size();
         //busqueda binaria para optimizar la formacion de pilas
         while (izquierda < derecha){
             int medio = izquierda + (derecha - izquierda) / 2;
@@ -19,7 +19,7 @@ std::vector<int> sortArray(std::vector<int>& arr){
                 izquierda = medio + 1;
             }
         }
-        if (izquierda == pilas.size()){
+        if (izquierda == (int)pilas.size()){
             std::stack<int> nueva_pila;
             nueva_pila.push(current);
             pilas.push_back(nueva_pila);
@@ -29,10 +29,10 @@ std::vector<int> sortArray(std::vector<int>& arr){
     }
     //Se crea una cola de prioridad (min-heap): guarda pares de datos (valor, indice pila)
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> min_heap;
-    for( int i = 0; i < pilas.size(); i++){
+    for(size_t i = 0; i < pilas.size(); i++){
         min_heap.push({pilas[i].top(), i});
     }
-    for (int i = 0; i < arr.size(); i++){
+    for (size_t i = 0; i < arr.size(); i++){
         auto top_item = min_heap.top();
         min_heap.pop();
         arr[i] = top_item.first;

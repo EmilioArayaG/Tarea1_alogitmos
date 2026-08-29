@@ -47,7 +47,7 @@ void mergesort(std::vector<int>& arr, int izq, int der){
         return;
     }
     int med = izq + (der - izq) / 2;
-    mergesort(arr, izq, der);
+    mergesort(arr, izq, med);
     mergesort(arr, med + 1, der);
     merge(arr, izq, med, der);
 }
