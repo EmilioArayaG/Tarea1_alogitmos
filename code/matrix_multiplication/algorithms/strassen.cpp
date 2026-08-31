@@ -81,3 +81,6 @@ std::vector<int> strassen(const std::vector<int>& A, const std::vector<int>& B, 
 
     return C;
 }
+std::vector<int> multiply(const std::vector<int>& A, const std::vector<int>& B, int N) {
+    return strassen(A, B, N);
+}

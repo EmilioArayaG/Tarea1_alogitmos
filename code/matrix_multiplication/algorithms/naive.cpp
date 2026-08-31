@@ -12,3 +12,6 @@ std::vector<int> matrixMultiplication(const std::vector<int>& A, const std::vect
     }
     return C;
 }
+std::vector<int> multiply(const std::vector<int>& A, const std::vector<int>& B, int N) {
+    return matrixMultiplication(A, B, N);
+}
