@@ -1,5 +1,11 @@
 #include <vector>
 
+/*
+ * Referencias:
+ * 1. GeeksforGeeks. "Strassen's Matrix Multiplication". 
+ *    URL: https://www.geeksforgeeks.org/strassens-matrix-multiplication/
+ */
+
 std::vector<int> sumaMatrix(const std::vector<int>& A, const std::vector<int>& B){
     int total_elem = A.size();
     std::vector<int> C(total_elem);

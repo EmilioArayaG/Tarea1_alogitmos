@@ -1,5 +1,11 @@
 #include <vector>
-// La funcion merge es la que mezcla las dos mitades
+
+/*
+ * Referencias:
+ * 1. GeeksforGeeks. "Merge Sort Algorithm". 
+ *    URL: https://www.geeksforgeeks.org/merge-sort/
+ */
+
 void merge(std::vector<int>& arr, int izq, int med, int der){
     int a1 = med - izq + 1;
     int a2 = der - med;
@@ -41,7 +47,7 @@ void merge(std::vector<int>& arr, int izq, int med, int der){
         k++;
     }
 }
-//mergesort hace la division de los arreglos recursiva
+
 void mergesort(std::vector<int>& arr, int izq, int der){
     if (izq >= der){
         return;

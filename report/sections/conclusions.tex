@@ -1,5 +1,9 @@
-\begin{mdframed}
-    \textbf{La extensión máxima para esta sección es un párrafo breve (máximo 1/4 de página).}
-\end{mdframed}
+El experimento confirma que la notación asintótica predice correctamente la forma de las curvas de crecimiento, pero no basta para ordenar por mérito a algoritmos que comparten la misma cota. Los cuatro algoritmos de ordenamiento son $\mathcal{O}(N \log N)$ y, sin embargo, difieren hasta en un factor de 64 sobre una misma entrada de $10^{7}$ elementos; la diferencia reside íntegramente en las constantes que la notación descarta.
 
-Escriba una conclusión breve que interprete los resultados más importantes. Cada afirmación debe estar respaldada por los datos presentados.
+Del análisis se desprenden tres observaciones concretas. Primero, el desempeño real depende de propiedades de la entrada que el parámetro $N$ no captura: el número de valores distintos determinó si QuickSort con partición de Lomuto terminaba o desbordaba la pila, y el largo de la subsecuencia decreciente mínima hizo variar a PatienceSort en un factor de 51 en tiempo y de 46 en memoria entre dos entradas del mismo tamaño. Caracterizar una entrada únicamente por su tamaño resulta, en consecuencia, insuficiente.
+
+Segundo, la ventaja asintótica requiere un tamaño mínimo para materializarse. Strassen sólo superó de forma consistente al algoritmo iterativo en $N = 1024$; en $N = 256$ el resultado fue indistinguible y por debajo de 64 la propia implementación conmuta al método tradicional porque el costo de asignar submatrices domina sobre el ahorro de una multiplicación de bloque. Esto justifica el diseño híbrido: aplicar la recursión sólo por encima del punto de cruce medido y resolver los bloques pequeños con el método iterativo.
+
+Tercero, la mejora en tiempo no es gratuita en espacio. Strassen consumió 2{,}4 veces más memoria residente que el algoritmo iterativo en $N = 1024$, y MergeSort unos 19 MB más que \texttt{std::sort} en $N = 10^{7}$. En ambos casos el costo adicional en memoria es reproducible entre ejecuciones, mientras que las diferencias en tiempo de magnitud comparable no lo son, lo que sugiere que la memoria es, en este entorno de medición, el indicador más estable de los dos.
+
+Finalmente, el experimento tiene una limitación metodológica que conviene explicitar: la dispersión medida entre ejecuciones idénticas alcanzó un factor de tres para $N = 1024$, suficiente para ocultar diferencias algorítmicas moderadas. Repetir cada medición varias veces sobre la misma entrada y reportar el mínimo, en lugar de promediar únicamente entre muestras distintas, reduciría este margen y permitiría discriminar el comportamiento en la región de cruce con mayor confianza.

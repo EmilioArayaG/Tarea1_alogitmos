@@ -1,5 +1,11 @@
 #include <vector>
 
+/*
+ * Referencias:
+ * 1. GeeksforGeeks. "C++ Program to Multiply Two Matrices". 
+ *    URL: https://www.geeksforgeeks.org/cpp-program-to-multiply-two-matrices/
+ */
+
 std::vector<int> matrixMultiplication(const std::vector<int>& A, const std::vector<int>& B, int N){
     std::vector<int> C(N * N, 0);
 

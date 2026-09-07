@@ -11,7 +11,7 @@ std::vector<int> multiply(const std::vector<int>& A, const std::vector<int>& B, 
 std::vector<int> leerMatrix(const std::string& filename) {
     std::ifstream infile(filename);
     if (!infile.is_open()) {
-        std::cerr << "Error al abrir el archivo: " << filename << "\n";
+        std::cerr << "error al abrir el archivo: " << filename << "\n";
         exit(1);
     }
     std::vector<int> matrix;
@@ -25,7 +25,7 @@ std::vector<int> leerMatrix(const std::string& filename) {
 
 int main(int argc, char* argv[]) {
     if (argc < 5) {
-        std::cerr << "Uso: " << argv[0] << " <matriz_A.txt> <matriz_B.txt> <output.txt> <measurements.txt>\n";
+        std::cerr << "uso: " << argv[0] << " <matriz_A.txt> <matriz_B.txt> <output.txt> <measurements.txt>\n";
         return 1;
     }
 
@@ -38,13 +38,13 @@ int main(int argc, char* argv[]) {
     std::vector<int> B = leerMatrix(file_B);
 
     if (A.size() != B.size() || A.empty()) {
-        std::cerr << "Error: Las matrices no tienen el mismo tamaño o estan vacias.\n";
+        std::cerr << "error: las matrices no tienen el mismo tamaño o estan vacias.\n";
         return 1;
     }
     
     int N = std::sqrt(A.size());
     if (N * N != (int)A.size()) {
-        std::cerr << "Error: La matriz no es cuadrada.\n";
+        std::cerr << "error: la matriz no es cuadrada.\n";
         return 1;
     }
 
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
 
     std::ofstream outfile(output_file);
     if (!outfile.is_open()) {
-        std::cerr << "Error al abrir el archivo de salida: " << output_file << "\n";
+        std::cerr << "error al abrir el archivo de salida: " << output_file << "\n";
         return 1;
     }
     
@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
 
     std::ofstream measfile(measure_file);
     if (!measfile.is_open()) {
-        std::cerr << "Error al abrir el archivo de mediciones: " << measure_file << "\n";
+        std::cerr << "error al abrir el archivo de mediciones: " << measure_file << "\n";
         return 1;
     }
     

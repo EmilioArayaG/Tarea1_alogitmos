@@ -3,6 +3,14 @@
 #include <queue>
 #include <utility>
 
+/*
+ * Referencias:
+ * 1. Princeton University. "Patience Sorting and Longest Increasing Subsequence".
+ *    URL: https://www.cs.princeton.edu/courses/archive/spring13/cos423/lectures/LongestIncreasingSubsequence.pdf
+ * 2. GeeksforGeeks. "Longest Increasing Subsequence (LIS)".
+ *    URL: https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/
+ */
+
 std::vector<int> sortArray(std::vector<int>& arr){
     if (arr.empty()) return arr;
 
@@ -10,7 +18,7 @@ std::vector<int> sortArray(std::vector<int>& arr){
     for (int current : arr) {
         int izquierda = 0;
         int derecha = (int)pilas.size();
-        //busqueda binaria para optimizar la formacion de pilas
+        
         while (izquierda < derecha){
             int medio = izquierda + (derecha - izquierda) / 2;
             if (pilas[medio].top() >= current) {
@@ -27,7 +35,7 @@ std::vector<int> sortArray(std::vector<int>& arr){
             pilas[izquierda].push(current);
         }
     }
-    //Se crea una cola de prioridad (min-heap): guarda pares de datos (valor, indice pila)
+
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> min_heap;
     for(size_t i = 0; i < pilas.size(); i++){
         min_heap.push({pilas[i].top(), i});

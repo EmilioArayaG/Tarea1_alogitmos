@@ -1,0 +1,41 @@
+# ---------------------------------------------------------------
+# Datos generados por los programas.
+# No se versionan: se regeneran ejecutando los generadores y `make run`.
+#   cd code/sorting/scripts && python3 array_generator.py
+#   cd code/matrix_multiplication/scripts && python3 matrix_generator.py
+# Se conservan los directorios (.gitkeep) porque `make run` escribe en ellos.
+# ---------------------------------------------------------------
+code/sorting/data/array_input/*
+!code/sorting/data/array_input/.gitkeep
+code/sorting/data/array_output/*
+!code/sorting/data/array_output/.gitkeep
+code/matrix_multiplication/data/matrix_input/*
+!code/matrix_multiplication/data/matrix_input/.gitkeep
+code/matrix_multiplication/data/matrix_output/*
+!code/matrix_multiplication/data/matrix_output/.gitkeep
+
+# Ejecutables compilados
+code/sorting/sorting_merge
+code/sorting/sorting_quick
+code/sorting/sorting_patience
+code/sorting/sorting_std
+code/matrix_multiplication/matrix_naive
+code/matrix_multiplication/matrix_strassen
+
+# Archivos auxiliares de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Sistema
+__pycache__/
+.DS_Store
+Thumbs.db

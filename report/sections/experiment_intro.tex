@@ -1,5 +1,16 @@
-\begin{mdframed}
-    \textbf{La extensión máxima para esta sección es de media página.}
-\end{mdframed}
+\subsection{Entorno de ejecución}
 
-Especifique el hardware y software utilizado para realizar los experimentos (por ejemplo, procesador, memoria RAM, sistema operativo, compilador y versión). Incluya una mención breve de los datasets utilizados, los cuales son los descritos en el enunciado de la tarea.
+Las mediciones se realizaron en un computador portátil HP Victus con procesador Intel Core i5-12450H (arquitectura x86\_64) y 16 GB de memoria RAM DDR4 a 3200 MT/s, bajo Ubuntu Linux ejecutado sobre Windows Subsystem for Linux 2 (WSL2). El código fue implementado en C++ bajo el estándar C++17 y compilado con \texttt{g++} empleando el nivel de optimización \texttt{-O3}.
+
+La instrumentación temporal utiliza \texttt{std::chrono::high\_resolution\_clock}, cuya resolución nominal es de nanosegundos, y los tiempos se reportan en milisegundos. El intervalo medido comprende exclusivamente la llamada a la rutina de ordenamiento o de multiplicación: la lectura de los archivos de entrada y la escritura de los resultados quedan fuera del cronómetro. El consumo de memoria corresponde a la memoria residente máxima (RSS) del proceso, obtenida mediante \texttt{getrusage(RUSAGE\_SELF, \dots)}. Dado que esta métrica contabiliza el proceso completo, incluye el arreglo o las matrices de entrada; por lo tanto, la magnitud interpretable es la diferencia entre algoritmos sobre una misma entrada y no el valor absoluto.
+
+\subsection{Conjuntos de datos evaluados}
+
+Se generaron y evaluaron todas las combinaciones especificadas en el enunciado, mediante los generadores \texttt{array\_generator.py} y \texttt{matrix\_generator.py}:
+
+\begin{itemize}
+    \item \textbf{Ordenamiento:} arreglos de tamaño $N \in \{10^{1}, 10^{3}, 10^{5}, 10^{7}\}$, en las tres disposiciones iniciales (aleatoria, ascendente y descendente) y en dos dominios: $D_{1}$, con valores en $\{0,\dots,9\}$, que fuerza una alta proporción de elementos repetidos, y $D_{7}$, con valores en $\{0,\dots,10^{7}\}$, donde las repeticiones son poco frecuentes. Esto totaliza 24 configuraciones.
+    \item \textbf{Multiplicación de matrices:} matrices cuadradas de dimensión $N \in \{2^{4}, 2^{6}, 2^{8}, 2^{10}\}$, en los tres tipos definidos (densa, dispersa con aproximadamente 10\% de elementos no nulos, y diagonal) y en dos dominios, $D_{0}$ con coeficientes en $\{0,1\}$ y $D_{10}$ con coeficientes en $\{0,\dots,9\}$. Esto totaliza 24 configuraciones.
+\end{itemize}
+
+Cada configuración se evaluó sobre tres muestras aleatorias independientes ($m \in \{a,b,c\}$) y se reporta el promedio aritmético, lo que da un total de 288 mediciones de ordenamiento y 144 de multiplicación. Cabe señalar que las tres repeticiones sólo promedian la variabilidad entre muestras distintas: no se realizaron ejecuciones repetidas de una misma entrada ni etapas de calentamiento, por lo que la carga de procesos en segundo plano del sistema anfitrión permanece como fuente de dispersión. La Sección \ref{subsec:matrices} cuantifica esta dispersión y acota qué diferencias pueden considerarse significativas.

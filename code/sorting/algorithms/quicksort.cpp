@@ -1,28 +1,48 @@
 #include <vector>
 #include <utility>
 
-int particion(std::vector<int>& arr, int izq, int der){
-    int pivot = arr[der];
+/*
+ * Referencias:
+ * 1. GeeksforGeeks. "QuickSort Algorithm". 
+ *    URL: https://www.geeksforgeeks.org/quick-sort/
+ * 2. GeeksforGeeks. "Hoare's vs Lomuto partition scheme in QuickSort".
+ *    URL: https://www.geeksforgeeks.org/hoares-vs-lomuto-partition-scheme-quicksort/
+ */
+
+int particion(std::vector<int>& arr, int izq, int der) {
+    int pivot = arr[izq + (der - izq) / 2];
+    
     int i = izq - 1;
-    for (int j = izq; j < der; j++){
-        if (arr[j] <= pivot){
+    int j = der + 1;
+
+    while (true) {
+        do {
             i++;
-            std::swap(arr[i], arr[j]);
+        } while (arr[i] < pivot);
+
+        do {
+            j--;
+        } while (arr[j] > pivot);
+
+        if (i >= j) {
+            return j;
         }
-    }
-    std::swap(arr[i + 1], arr[der]);
-    return i + 1;
-}
-void quickSort (std::vector<int>& arr, int izq, int der){
-    if (izq < der){
-        int pivotIndex = particion(arr, izq, der);
-        quickSort(arr, izq, pivotIndex - 1);
-        quickSort(arr, pivotIndex + 1, der);
+
+        std::swap(arr[i], arr[j]);
     }
 }
 
-std::vector<int> sortArray(std::vector<int>& arr){
-    if (!arr.empty()){
+void quickSort(std::vector<int>& arr, int izq, int der) {
+    if (izq < der) {
+        int pi = particion(arr, izq, der);
+        
+        quickSort(arr, izq, pi);
+        quickSort(arr, pi + 1, der);
+    }
+}
+
+std::vector<int> sortArray(std::vector<int>& arr) {
+    if (!arr.empty()) {
         quickSort(arr, 0, arr.size() - 1);
     }
     return arr;

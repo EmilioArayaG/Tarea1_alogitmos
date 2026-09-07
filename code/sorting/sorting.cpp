@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
 
     std::ifstream infile(input_file);
     if (!infile.is_open()) {
-        std::cerr << "Error al abrir el archivo de entrada: " << input_file << "\n";
+        std::cerr << "error al abrir el archivo de entrada: " << input_file << "\n";
         return 1;
     }
     
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 
     std::ofstream outfile(output_file);
     if (!outfile.is_open()) {
-        std::cerr << "Error al abrir el archivo de salida: " << output_file << "\n";
+        std::cerr << "error al abrir el archivo de salida: " << output_file << "\n";
         return 1;
     }
     
@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
 
     std::ofstream measfile(measure_file);
     if (!measfile.is_open()) {
-        std::cerr << "Error al abrir el archivo de mediciones: " << measure_file << "\n";
+        std::cerr << "error al abrir el archivo de mediciones: " << measure_file << "\n";
         return 1;
     }
     
