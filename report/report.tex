@@ -38,6 +38,11 @@
 
 
 
+% Permite quebrar las URLs largas de la bibliografia para que no se salgan del margen.
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+\setcounter{biburllcpenalty}{9000}
+
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
@@ -46,11 +51,11 @@
 \section{Abstract}
 \input{sections/abstract}
 
-\section{Implementaciones}
-\input{sections/implementations}
-
 \section{Introducción}
 \input{sections/introduccion}
+
+\section{Implementaciones}
+\input{sections/implementations}
 
 \section{Entorno experimental}
 \input{sections/experiment_intro}
@@ -61,7 +66,7 @@
 \section{Conclusiones}
 \input{sections/conclusions}
 
-\section{Appendix}
+\section{Apéndice}
 \input{sections/appendix1}
 
 \printbibliography

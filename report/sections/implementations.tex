@@ -1,1 +1,36 @@
-La url del repositorio donde se encuentra el codigo base: https://github.com/EmilioArayaG/Tarea1_alogitmos
+El código fuente completo de la tarea --- las implementaciones de los seis algoritmos, los
+programas de medición, los generadores de casos de prueba, los scripts de graficado y las
+fuentes de este informe --- se encuentra en el siguiente repositorio:
+
+\begin{center}
+\url{https://github.com/EmilioArayaG/Tarea1_alogitmos}
+\end{center}
+
+La Tabla \ref{tab:implementaciones} indica en qué archivo del repositorio está implementado cada
+algoritmo y cuál fue la referencia consultada para escribirlo. Las mismas referencias se
+encuentran citadas al inicio de cada archivo fuente, en el punto exacto en que se utilizan.
+
+\begin{table}[htbp]
+\centering
+\caption{Ubicación de cada implementación dentro del repositorio y referencia consultada.}
+\vspace{0.2cm}
+\small
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Componente} & \textbf{Archivo} & \textbf{Referencia} \\ \hline
+MergeSort & \texttt{sorting/algorithms/mergesort.cpp} & \cite{gfg_mergesort} \\ \hline
+QuickSort & \texttt{sorting/algorithms/quicksort.cpp} & \cite{gfg_quicksort,gfg_hoare_lomuto} \\ \hline
+PatienceSort & \texttt{sorting/algorithms/patiencesort.cpp} & \cite{princeton_patience,gfg_lis} \\ \hline
+\texttt{std::sort} & \texttt{sorting/algorithms/sort.cpp} & \cite{cppref_sort} \\ \hline
+Naive & \texttt{matrix\_multiplication/algorithms/naive.cpp} & \cite{gfg_naive} \\ \hline
+Strassen & \texttt{matrix\_multiplication/algorithms/strassen.cpp} & \cite{gfg_strassen} \\ \hline
+Programas de medición & \texttt{sorting.cpp}, \texttt{matrix\_multiplication.cpp} & \cite{cppref_chrono,man_getrusage} \\ \hline
+Generadores y gráficos & \texttt{scripts/*.py} & --- \\ \hline
+\end{tabular}
+\label{tab:implementaciones}
+\end{table}
+
+El archivo \texttt{sorting/algorithms/sort.cpp} fue entregado ya implementado en el material
+del curso y se incluye sin modificaciones, como referencia de comparación. Los scripts en
+\textsc{python} no requirieron referencias externas. Las instrucciones de compilación y el
+orden de ejecución de los programas están documentados en \texttt{code/README.md}.
