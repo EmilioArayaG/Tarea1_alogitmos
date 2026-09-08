@@ -6,6 +6,14 @@
 #include <string>
 #include <cmath>
 
+/*
+ * referencias:
+ * 1. cppreference, "std::chrono::high_resolution_clock"
+ *    url: https://en.cppreference.com/w/cpp/chrono/high_resolution_clock
+ * 2. man7, "getrusage(2)"
+ *    url: https://man7.org/linux/man-pages/man2/getrusage.2.html
+ */
+
 std::vector<int> multiply(const std::vector<int>& A, const std::vector<int>& B, int N);
 
 std::vector<int> leerMatrix(const std::string& filename) {

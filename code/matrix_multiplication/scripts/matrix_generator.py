@@ -3,6 +3,9 @@ import os
 import random
 from itertools import product
 
+# referencias:
+# no se usaron referencias externas para este script
+
 def generar_matriz(n, tipo, dominio):
     """
     Genera una matriz de tamaño n x n según el tipo y dominio especificados.

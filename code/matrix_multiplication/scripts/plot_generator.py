@@ -2,6 +2,9 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# referencias:
+# no se usaron referencias externas para este script
+
 meas_dir = "../data/measurements"
 plots_dir = "../data/plots"
 

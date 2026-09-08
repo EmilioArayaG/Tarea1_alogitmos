@@ -1,6 +1,9 @@
 import numpy as np
 import os
 
+# referencias:
+# no se usaron referencias externas para este script
+
 def generar_arreglo(n, tipo, dominio):
     if dominio == "D1":
         valores = np.arange(10)
