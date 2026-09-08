@@ -6,6 +6,8 @@ TARGET_STRASSEN = matrix_strassen
 
 MAIN = matrix_multiplication.cpp
 
+.PHONY: all clean run
+
 all: $(TARGET_NAIVE) $(TARGET_STRASSEN)
 
 $(TARGET_NAIVE): $(MAIN) algorithms/naive.cpp

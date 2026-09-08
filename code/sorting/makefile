@@ -1,6 +1,8 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -O3 -Wall
 
+.PHONY: all clean run merge quick patience std
+
 all: merge quick patience std
 
 merge: sorting.cpp algorithms/mergesort.cpp
