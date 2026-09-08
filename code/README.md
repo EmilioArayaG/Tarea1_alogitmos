@@ -92,3 +92,16 @@ cd scripts && python3 plot_generator.py            # genera los gráficos
 ```
 
 El mismo orden aplica a `matrix_multiplication/` usando `matrix_generator.py`.
+
+## Nota sobre los datos incluidos en la entrega
+
+Los generadores producen 4,4 GB de arreglos y matrices, por lo que el `.zip`
+no incluye los dos tamaños mayores:
+
+- arreglos de `n = 10^7` (4,25 GB en entradas y salidas),
+- matrices de `n = 1024` (195 MB en entradas y salidas).
+
+Sí se incluyen todos los demás tamaños, además de **todas** las mediciones
+(`data/measurements/`) y **todos** los gráficos (`data/plots/`), que son los
+que respaldan las tablas y figuras del informe. Los dos tamaños omitidos se
+regeneran con el orden de ejecución descrito arriba.
