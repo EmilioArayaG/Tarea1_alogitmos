@@ -5,13 +5,8 @@ import matplotlib.pyplot as plt
 meas_dir = "../data/measurements"
 plots_dir = "../data/plots"
 
-print(f"Buscando archivos en: {os.path.abspath(meas_dir)}")
-
 datos = []
-archivos_encontrados = os.listdir(meas_dir)
-print(f"Total de archivos en measurements: {len(archivos_encontrados)}")
-
-for archivo in archivos_encontrados:
+for archivo in os.listdir(meas_dir):
     if archivo.endswith("_meas.txt"):
         partes = archivo.replace("_meas.txt", "").split("_")
         if len(partes) == 5:
@@ -32,12 +27,10 @@ for archivo in archivos_encontrados:
             except Exception as e:
                 print(f"Error leyendo {archivo}: {e}")
 
-print(f"Registros validos cargados para graficar: {len(datos)}")
-
 df = pd.DataFrame(datos, columns=["N", "Tipo", "Dominio", "Muestra", "Algoritmo", "Tiempo", "Memoria"])
 
 if df.empty:
-    print("Error critico: El DataFrame esta vacio. No hay datos para procesar.")
+    print("No se encontraron datos. Verifica la carpeta measurements.")
     exit()
 
 df_promedio = df.groupby(["N", "Tipo", "Dominio", "Algoritmo"]).mean(numeric_only=True).reset_index()
@@ -64,7 +57,6 @@ def generar_grafico(subset, metrica, titulo, etiqueta_y, nombre_plot):
     plt.savefig(os.path.join(plots_dir, nombre_plot), bbox_inches='tight')
     plt.close()
 
-contador = 0
 for t in tipos:
     for d in dominios:
         subset = df_promedio[(df_promedio["Tipo"] == t) & (df_promedio["Dominio"] == d)]
@@ -79,7 +71,3 @@ for t in tipos:
                         f"Memoria Residente Maxima - Matriz {t.capitalize()} (Dominio {d})",
                         "Memoria Residente Maxima Promedio (KB)",
                         f"memoria_{t}_{d}.png")
-
-        contador += 2
-
-print(f"Exito. Se han generado {contador} graficos en: {os.path.abspath(plots_dir)}")

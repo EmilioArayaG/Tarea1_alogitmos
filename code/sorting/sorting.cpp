@@ -9,7 +9,7 @@ std::vector<int> sortArray(std::vector<int>& arr);
 
 int main(int argc, char* argv[]) {
     if (argc < 4) {
-        std::cerr << "Uso: " << argv[0] << " <input.txt> <output.txt> <measurements.txt>\n";
+        std::cerr << "uso: " << argv[0] << " <input.txt> <output.txt> <measurements.txt>\n";
         return 1;
     }
 

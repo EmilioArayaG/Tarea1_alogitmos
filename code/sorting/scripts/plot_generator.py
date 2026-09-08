@@ -56,7 +56,6 @@ def generar_grafico(subset, metrica, titulo, etiqueta_y, nombre_plot):
     plt.savefig(os.path.join(plots_dir, nombre_plot), bbox_inches='tight')
     plt.close()
 
-contador = 0
 for t in tipos:
     for d in dominios:
         subset = df_promedio[(df_promedio["Tipo"] == t) & (df_promedio["Dominio"] == d)]
@@ -71,7 +70,3 @@ for t in tipos:
                         f"Memoria Residente Máxima - Arreglo {t.capitalize()} (Dominio {d})",
                         "Memoria Residente Máxima Promedio (KB)",
                         f"memoria_{t}_{d}.png")
-
-        contador += 2
-
-print(f"Se han generado {contador} gráficos en la carpeta data/plots")
