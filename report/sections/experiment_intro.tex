@@ -6,7 +6,7 @@ La instrumentación temporal utiliza \texttt{std::chrono::high\_resolution\_cloc
 
 \subsection{Conjuntos de datos evaluados}
 
-Se generaron y evaluaron todas las combinaciones especificadas en el enunciado, mediante los generadores \texttt{array\_generator.py} y \texttt{matrix\_generator.py}:
+Se generaron con los codigos  \texttt{array\_generator.py} y \texttt{matrix\_generator.py}:
 
 \begin{itemize}
     \item \textbf{Ordenamiento:} arreglos de tamaño $N \in \{10^{1}, 10^{3}, 10^{5}, 10^{7}\}$, en las tres disposiciones iniciales (aleatoria, ascendente y descendente) y en dos dominios: $D_{1}$, con valores en $\{0,\dots,9\}$, que fuerza una alta proporción de elementos repetidos, y $D_{7}$, con valores en $\{0,\dots,10^{7}\}$, donde las repeticiones son poco frecuentes. Esto totaliza 24 configuraciones.

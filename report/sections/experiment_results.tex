@@ -8,8 +8,7 @@
     \caption{Tiempo de ejecución para arreglos de disposición aleatoria, en el dominio $D_{1}$ (alta repetición, izquierda) y $D_{7}$ (rango amplio, derecha). Ambos ejes en escala logarítmica.}
     \label{fig:sorting_aleatorio}
 \end{figure}
-
-Los tiempos completos se encuentran en la Tabla \ref{tab:sorting_tiempo} y el consumo de memoria en la Tabla \ref{tab:sorting_memoria}. Sobre entradas aleatorias (Figura \ref{fig:sorting_aleatorio}) las cuatro curvas son aproximadamente rectas y paralelas en escala logarítmica, lo que confirma el crecimiento log-lineal común a los cuatro algoritmos; las diferencias observadas son, por tanto, diferencias de constante y no de orden de crecimiento.
+Sobre entradas aleatorias (Figura \ref{fig:sorting_aleatorio}) las cuatro curvas son aproximadamente rectas y paralelas en escala logarítmica, lo que confirma el crecimiento log-lineal común a los cuatro algoritmos; las diferencias observadas son, por tanto, diferencias de constante y no de orden de crecimiento.
 
 \begin{itemize}
     \item \textbf{\texttt{std::sort}} obtuvo el menor tiempo en 21 de las 24 configuraciones. Las tres excepciones corresponden a QuickSort en el dominio $D_{1}$ para $N = 10^{1}$ y $N = 10^{3}$, tamaños en los que los tiempos son del orden de $10^{-2}$ ms y quedan por debajo del umbral en que la medición es distinguible del ruido. Su ventaja proviene de operar sobre memoria contigua sin estructuras auxiliares y de conmutar internamente entre \textsc{quicksort}, \textsc{heapsort} e inserción según la profundidad de recursión \cite{cppref_sort}.
