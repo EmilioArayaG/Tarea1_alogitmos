@@ -6,39 +6,27 @@
  *    URL: https://www.geeksforgeeks.org/strassens-matrix-multiplication/
  */
 
-std::vector<int> sumaMatrix(const std::vector<int>& A, const std::vector<int>& B){
+std::vector<int> sumaMatrix(const std::vector<int>& A, const std::vector<int>& B) {
     int total_elem = A.size();
     std::vector<int> C(total_elem);
-    for (int i = 0; i < total_elem; i++){
+    for (int i = 0; i < total_elem; i++) {
         C[i] = A[i] + B[i];
     }
     return C;
 }
 
-std::vector<int> restaMatrix(const std::vector<int>& A, const std::vector<int>& B){
+std::vector<int> restaMatrix(const std::vector<int>& A, const std::vector<int>& B) {
     int total_elem = A.size();
     std::vector<int> C(total_elem);
-    for (int i = 0; i < total_elem; i++){
+    for (int i = 0; i < total_elem; i++) {
         C[i] = A[i] - B[i];
     }
     return C;
 }
 
-std::vector<int> naiveFallback(const std::vector<int>& A, const std::vector<int>& B, int N) {
-    std::vector<int> C(N * N, 0);
-    for (int i = 0; i < N; ++i) {
-        for (int k = 0; k < N; ++k) {
-            for (int j = 0; j < N; ++j) {
-                C[i * N + j] += A[i * N + k] * B[k * N + j];
-            }
-        }
-    }
-    return C;
-}
-
 std::vector<int> strassen(const std::vector<int>& A, const std::vector<int>& B, int N) {
-    if (N <= 64) {
-        return naiveFallback(A, B, N);
+    if (N == 1) {
+        return { A[0] * B[0] };
     }
 
     int mitad = N / 2;
@@ -69,6 +57,7 @@ std::vector<int> strassen(const std::vector<int>& A, const std::vector<int>& B, 
     std::vector<int> M5 = strassen(sumaMatrix(A11, A12), B22, mitad);
     std::vector<int> M6 = strassen(restaMatrix(A21, A11), sumaMatrix(B11, B12), mitad);
     std::vector<int> M7 = strassen(restaMatrix(A12, A22), sumaMatrix(B21, B22), mitad);
+
     std::vector<int> C11 = sumaMatrix(restaMatrix(sumaMatrix(M1, M4), M5), M7);
     std::vector<int> C12 = sumaMatrix(M3, M5);
     std::vector<int> C21 = sumaMatrix(M2, M4);
@@ -87,6 +76,7 @@ std::vector<int> strassen(const std::vector<int>& A, const std::vector<int>& B, 
 
     return C;
 }
+
 std::vector<int> multiply(const std::vector<int>& A, const std::vector<int>& B, int N) {
     return strassen(A, B, N);
 }
