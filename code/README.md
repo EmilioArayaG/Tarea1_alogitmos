@@ -1,103 +1,4 @@
-# Documentación del código
-
-Este directorio contiene las implementaciones y herramientas utilizadas en la Tarea 1 de **INF-221 Algoritmos y Complejidad**, correspondiente al semestre 2026-2.
-
-El proyecto estudia experimentalmente cuatro algoritmos de ordenamiento y dos algoritmos de multiplicación de matrices. Para cada implementación se mide el tiempo de ejecución y la memoria residente máxima del proceso.
-
-## Requisitos
-
-- Sistema Linux o Windows Subsystem for Linux 2 (WSL2).
-- `g++` con soporte para C++17.
-- GNU Make.
-- Python 3.
-- Bibliotecas de Python: `numpy`, `pandas` y `matplotlib`.
-
-Los programas en C++ se compilan con las opciones:
-
-```text
--std=c++17 -O3 -Wall
-```
-
-Las dependencias de Python se pueden instalar mediante:
-
-```bash
-python3 -m pip install numpy pandas matplotlib
-```
-
-## Estructura
-
-```text
-code/
-├── matrix_multiplication/
-│   ├── algorithms/
-│   ├── data/
-│   │   ├── matrix_input/
-│   │   ├── matrix_output/
-│   │   ├── measurements/
-│   │   └── plots/
-│   ├── scripts/
-│   ├── makefile
-│   └── matrix_multiplication.cpp
-├── sorting/
-│   ├── algorithms/
-│   ├── data/
-│   │   ├── array_input/
-│   │   ├── array_output/
-│   │   ├── measurements/
-│   │   └── plots/
-│   ├── scripts/
-│   ├── makefile
-│   └── sorting.cpp
-└── README.md
-```
-
-## Multiplicación de matrices
-
-Se implementaron los algoritmos Naive y Strassen. Ambos multiplican matrices cuadradas de enteros de dimensión `N × N` y se compilan como programas independientes.
-
-Las matrices se almacenan por filas en un único `std::vector<int>` de largo `N²`. El elemento ubicado en la fila `i` y columna `j` se encuentra en la posición `i * N + j`. Ambas implementaciones proporcionan la función `multiply(A, B, N)`, que es invocada por el mismo programa principal.
-
-### Algoritmos
-
-- `algorithms/naive.cpp`: implementa la multiplicación tradicional mediante tres ciclos anidados, con complejidad temporal `O(N³)`. Los ciclos siguen el orden `i-k-j` para favorecer el acceso secuencial a las matrices almacenadas por filas.
-- `algorithms/strassen.cpp`: implementa el algoritmo de Strassen mediante división y conquista, con complejidad temporal teórica aproximada `O(N^2.81)`. Cada matriz se divide en cuatro bloques y se calculan siete productos recursivos. La implementación evaluada utiliza recursión pura hasta alcanzar matrices de `1 × 1`; no emplea un umbral híbrido con el algoritmo tradicional. Se supone que `N` es una potencia de dos, condición que cumplen todos los casos de prueba de la tarea.
-
-### Programa principal
-
-`matrix_multiplication.cpp` recibe cuatro argumentos:
-
-```bash
-./matrix_naive <matriz_A.txt> <matriz_B.txt> <salida.txt> <medicion.txt>
-```
-
-También puede ejecutarse la versión de Strassen:
-
-```bash
-./matrix_strassen <matriz_A.txt> <matriz_B.txt> <salida.txt> <medicion.txt>
-```
-
-El programa realiza las siguientes operaciones:
-
-1. Lee las dos matrices de entrada.
-2. Verifica que contengan la misma cantidad de elementos y que representen matrices cuadradas.
-3. Deduce `N` a partir de la cantidad de elementos.
-4. Mide la ejecución de `multiply(A, B, N)` mediante `<chrono>`.
-5. Obtiene la memoria residente máxima del proceso mediante `getrusage()`.
-6. Escribe la matriz resultante y el archivo de medición.
-
-La lectura de las matrices y la escritura de los resultados quedan fuera del intervalo cronometrado. Cada archivo de medición contiene una línea con el siguiente formato:
-
-```text
-tiempo_ms memoria_kb
-```
-
-### Compilación y ejecución
-
-Desde `code/matrix_multiplication/`:# Documentación
-
-## Entrega
-
-La entrega se realiza vía **aula.usm.cl** en formato `.zip`.
+# Documentación
 
 ## Multiplicación de matrices
 
@@ -121,9 +22,9 @@ Lee ambas matrices, deduce N a partir de la cantidad de números leídos, verifi
 Compilación y ejecución con el `makefile`:
 
 ```bash
-make          # genera los ejecutables matrix_naive y matrix_strassen
-make run      # ejecuta ambos algoritmos sobre todos los pares de data/matrix_input/
-make clean    # borra los ejecutables
+make          
+make run      
+make clean    
 ```
 
 ### Scripts
@@ -157,9 +58,9 @@ Funciona igual que el de matrices: lee el arreglo, cronometra **solo** la llamad
 Compilación y ejecución con el `makefile`:
 
 ```bash
-make          # genera sorting_merge, sorting_quick, sorting_patience y sorting_std
-make run      # ejecuta los cuatro algoritmos sobre todos los archivos de data/array_input/
-make clean    # borra los ejecutables
+make        
+make run     
+make clean    
 ```
 
 ### Scripts
@@ -181,9 +82,10 @@ pip install numpy pandas matplotlib
 ## Orden de ejecución
 
 ```bash
-cd sorting/scripts && python3 array_generator.py   # genera las entradas
-cd .. && make run                                  # mide tiempo y memoria
-cd scripts && python3 plot_generator.py            # genera los gráficos
+cd sorting/scripts && python3 array_generator.py  
+cd .. && make run                                  
+cd scripts && python3 plot_generator.py            
 ```
 
 El mismo orden aplica a `matrix_multiplication/` usando `matrix_generator.py`.
+
